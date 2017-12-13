@@ -122,7 +122,7 @@
 (fm/defmethod fill 
   IPersistentList
   [^IPersistentList _ ^IFn generator ^long n]
-  (into (list) (repeatedly n generator)))
+  (into '() (repeatedly n generator)))
 ;;----------------------------------------------------------------
 
 
