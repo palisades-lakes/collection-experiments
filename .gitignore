@@ -39,3 +39,4 @@
 /perf.bat
 /.RData
 /.Rhistory
+logs-*
