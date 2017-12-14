@@ -13,10 +13,14 @@
   (:refer-clojure :exclude [map])
   (:require [palisades.lakes.multimethods.core :as fm]
             [palisades.lakes.collex.arrays :as arrays])
-  (:import [java.util ArrayList Collections Iterator LinkedList]
+  (:import [java.util ArrayList Arrays Collections Iterator 
+            LinkedList Map]
            [clojure.lang IFn IFn$D IFn$L LazySeq
             IPersistentList IPersistentVector]
-           [com.google.common.collect ImmutableList]))
+           [com.google.common.collect ImmutableList]
+           [com.google.common.primitives 
+            Booleans Bytes Chars Doubles Floats Ints Longs 
+            Shorts]))
 ;;----------------------------------------------------------------
 (fm/defmulti ^Iterator iterator
   "Return an iterator for <code>things</code>." 
@@ -32,10 +36,10 @@
 (fm/defmethod iterator Map [^Map things] 
   (iterator (.entrySet things)))
 (fm/prefer-method iterator Map Iterable)
-(fm/defmethod iterator Multimap [^Multimap things] 
-  (iterator (.asMap things)))
-(fm/defmethod iterator Table [^Table things] 
-  (iterator (.cellSet things)))
+#_(fm/defmethod iterator Multimap [^Multimap things] 
+   (iterator (.asMap things)))
+#_(fm/defmethod iterator Table [^Table things] 
+   (iterator (.cellSet things)))
 
 ;; TODO: iterators that return unboxed double and long primitives 
 ;; (and String?)

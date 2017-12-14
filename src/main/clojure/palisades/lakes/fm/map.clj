@@ -13,10 +13,12 @@
   (:refer-clojure :exclude [map])
   (:require [palisades.lakes.multimethods.core :as fm]
             [palisades.lakes.collex.arrays :as arrays]
-            [palisades.lakes.collex.iterator :as iterator])
-  (:import [java.util ArrayList Collections LinkedList]
+            [palisades.lakes.fm.iterator :as iterator])
+  (:import [java.util ArrayList Collection Collections 
+            HashMap Iterator LinkedList Map Map$Entry]
            [clojure.lang IFn IFn$D IFn$L LazySeq
-            IPersistentList IPersistentVector]
+            IPersistentList IPersistentMap IPersistentVector 
+            Seqable]
            [com.google.common.collect ImmutableList]))
 ;;----------------------------------------------------------------
 (fm/defmulti map
@@ -66,7 +68,7 @@
   (fm/to-signature IFn Map)
   [^IFn f ^Map things]
   (let [m (HashMap. (.size things))
-        it (iterator/iterator/iterator things)]
+        it (iterator/iterator things)]
     (while (.hasNext it)
       (let [^Map$Entry nxt (.next it)
             k (.getKey nxt)

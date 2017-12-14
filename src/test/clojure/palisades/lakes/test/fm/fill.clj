@@ -7,10 +7,11 @@
          <a href=\"https://github.com/palisades-lakes/faster-multimethods\">
          faster-multimethods</a>."
    :author "palisades dot lakes at gmail dot com"
-   :version "2017-12-11"}
+   :version "2017-12-13"}
   
   (:require [clojure.test :as test]
             [clojure.pprint :as pp]
+            [palisades.lakes.collex.arrays :as arrays]
             [palisades.lakes.fm.fill :as fill])
   
   (:import [java.util ArrayList Iterator]
@@ -40,10 +41,10 @@
         c13 (fill/fill fill/prototype-LazySeq dcounter 2)]
     (pp/pprint [c00 c01 c02 c03 c04 c05 c06 c07 c08 c09 c10 c11
                 c12 c13])
-    (test/is (fill/double-array? c00))
-    (test/is (fill/double-array? c01))
-    (test/is (= Long (fill/element-type c02)))
-    (test/is (= Double (fill/element-type c03)))
+    (test/is (arrays/double-array? c00))
+    (test/is (arrays/double-array? c01))
+    (test/is (= Long (arrays/element-type c02)))
+    (test/is (= Double (arrays/element-type c03)))
     (test/is (instance? ArrayList c04))
     (test/is (instance? ArrayList c05))
     (test/is (instance? ImmutableList c06))

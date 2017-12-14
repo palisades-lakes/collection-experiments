@@ -6,6 +6,8 @@
    :author "palisades dot lakes at gmail dot com"
    :version "2017-12-13"})
 ;;----------------------------------------------------------------
+(def ^Class boolean-array-type (let [a (boolean-array 0)] (class a)))
+(defn boolean-array? [x] (instance? boolean-array-type x))
 (def ^Class byte-array-type (let [a (byte-array 0)] (class a)))
 (defn byte-array? [x] (instance? byte-array-type x))
 (def ^Class char-array-type (let [a (char-array 0)] (class a)))
