@@ -6,7 +6,7 @@
   "Use criterium for alternative reduce-map-filter 
    implementations."
   {:author "palisades dot lakes at gmail dot com"
-   :version "2017-12-13"}
+   :version "2017-12-14"}
   
   (:require [palisades.lakes.bench.prng :as prng]
             [palisades.lakes.bench.generators :as g]
@@ -15,18 +15,27 @@
             [palisades.lakes.collex.scripts.defs :as defs]))
 ;; clj12g src\scripts\clojure\palisades\lakes\collex\scripts\transduce.clj 
 ;;----------------------------------------------------------------
-(def options {:n (* 1024 1024)
-              :benchmark "transduce"
-              :pause 8
-              ;;:samples 4
-              :warmup-jit-period (* 32 1024 1024 1024)})
-(bench/bench 
-  [containers/persistent-vector defs/uint]
-  [defs/composed
-   defs/reduce-map-filter
-   defs/transducer
-   defs/manual]
-  options)
+(doseq [container
+        [containers/array-of-int 
+         containers/lazy-sequence
+         containers/persistent-list 
+         containers/persistent-vector
+         containers/array-list
+         containers/immutable-list]]
+  (doseq [^long n (take 2 (iterate (partial * 4) (* 8 8 8 8 8)))]
+    (let [options {:n n
+                   :benchmark "transduce"
+                   :pause 8
+                   :warmup-jit-period (* 8 1024 1024 1024)}]
+      (println (bench/fn-name container) n)
+      (bench/bench 
+        [container defs/uint]
+        [defs/inline
+         defs/manual
+         defs/transducer
+         defs/reduce-map-filter
+         defs/composed]
+        options))))
 ;;----------------------------------------------------------------
 (shutdown-agents)
 (System/exit 0)
