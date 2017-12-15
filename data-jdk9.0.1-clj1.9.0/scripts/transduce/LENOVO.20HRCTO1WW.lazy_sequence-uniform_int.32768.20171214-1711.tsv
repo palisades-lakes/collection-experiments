@@ -1,0 +1,6 @@
+algorithm	benchmark	containers	elements	execution-count	generators	lower-q	manufacturerModel	median	millisec	nelements	now	nthreads	sample-count	tail-quantile	threads	total-time	upper-q	value	warmup-executions
+inline	transduce	lazy_sequence	uniform_int	580	lazy_sequence-uniform_int	1.7465493155172416	LENOVO.20HRCTO1WW	1.7825904051724137	1.7815170584827587	32768	20171214-1704	2	50	0.05	2	51.648741556	1.8306017879310348	1.1174214E8	5311
+manual_rmf	transduce	lazy_sequence	uniform_int	606	lazy_sequence-uniform_int	1.65827207689769	LENOVO.20HRCTO1WW	1.6638137004950495	1.8238493478547853	32768	20171214-1706	2	50	0.05	2	55.212703165	2.5735076047029706	1.11732748E8	6574
+transducer_rmf	transduce	lazy_sequence	uniform_int	524	lazy_sequence-uniform_int	1.5127922080152674	LENOVO.20HRCTO1WW	1.5309654570610687	1.7148068893893131	32768	20171214-1707	2	50	0.05	2	44.893028979	2.038791253721374	1.1174214E8	8331
+rmf	transduce	lazy_sequence	uniform_int	167	lazy_sequence-uniform_int	5.578608143712575	LENOVO.20HRCTO1WW	5.865194425149701	5.96743880479042	32768	20171214-1709	2	50	0.05	2	49.800845114	6.547997073353295	1.1174214E8	1621
+fn	transduce	lazy_sequence	uniform_int	178	lazy_sequence-uniform_int	5.2422018129213495	LENOVO.20HRCTO1WW	5.445980075842697	5.588478442022472	32768	20171214-1711	2	50	0.05	2	49.740386277	6.378135198595506	1.1174214E8	1761
