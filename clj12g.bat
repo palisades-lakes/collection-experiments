@@ -1,6 +1,6 @@
 @echo off
-:: wahpenayo (at) gmail (dot) com
-:: 2017-11-17
+:: palisades dot lakes (at) gmail (dot) com
+:: 2017-12-15
 
 ::set GC=-XX:+AggressiveHeap -XX:+UseStringDeduplication 
 set GC=
@@ -21,7 +21,7 @@ set THRUPUT=-d64 -server
 ::set XMX=-Xms48g -Xmx48g -Xmn20g 
 set XMX=-Xms12g -Xmx12g -Xmn5g 
 
-set OPENS=--add-opens java.base/java.lang=ALL-UNNAMED
+set OPENS=--add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.util.concurrent.atomic=ALL-UNNAMED
 set CP=-cp ./src/scripts/clojure;lib/*
 
 set JAVA_HOME=%JAVA9%

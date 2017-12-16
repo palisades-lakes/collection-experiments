@@ -7,7 +7,7 @@
          <a href=\"https://github.com/palisades-lakes/faster-multimethods\">
          faster-multimethods</a>."
    :author "palisades dot lakes at gmail dot com"
-   :version "2017-12-13"}
+   :version "2017-12-15"}
   
   (:require [clojure.test :as test]
             [clojure.pprint :as pp]
@@ -39,8 +39,8 @@
         c11 (fill/fill (list) dcounter 2)
         c12 (fill/fill fill/prototype-LazySeq lcounter 2)
         c13 (fill/fill fill/prototype-LazySeq dcounter 2)]
-    (pp/pprint [c00 c01 c02 c03 c04 c05 c06 c07 c08 c09 c10 c11
-                c12 c13])
+    #_(pp/pprint [c00 c01 c02 c03 c04 c05 c06 c07 c08 c09 c10 c11
+                 c12 c13])
     (test/is (arrays/double-array? c00))
     (test/is (arrays/double-array? c01))
     (test/is (= Long (arrays/element-type c02)))

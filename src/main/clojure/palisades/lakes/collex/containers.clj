@@ -5,7 +5,7 @@
   
   {:doc "Factories for collections with 'random' elements."
    :author "palisades dot lakes at gmail dot com"
-   :version "2017-12-14"}
+   :version "2017-12-15"}
   
   (:import [java.util ArrayList  Collection List]
            [com.google.common.collect ImmutableList]
@@ -14,22 +14,34 @@
 ;;----------------------------------------------------------------
 ;; container generators
 ;;----------------------------------------------------------------
-(defn array-list ^IPersistentList [^IFn generator ^long n]
-  (ArrayList. ^Collection (repeatedly n generator)))
-;;----------------------------------------------------------------
-(defn array-of-int ^ints [^IFn generator ^long n]
-  (into-array Integer/TYPE (repeatedly n generator)))
-;;----------------------------------------------------------------
-(defn immutable-list ^IPersistentList [^IFn generator ^long n]
-  (ImmutableList/copyOf ^Iterable (repeatedly n generator)))
-;;----------------------------------------------------------------
-(defn persistent-list ^IPersistentList [^IFn generator ^long n]
-  (into '() (repeatedly n generator)))
-;;----------------------------------------------------------------
-(defn persistent-vector ^IPersistentVector [^IFn generator ^long n]
-  (into [] (repeatedly n generator)))
-;;----------------------------------------------------------------
 (defn lazy-sequence ^LazySeq [^IFn generator ^long n]
   (repeatedly n generator))
+;;----------------------------------------------------------------
+(defn realized ^List [^IFn generator ^long n]
+  (doall (lazy-sequence generator n)))
+;;----------------------------------------------------------------
+(defn array-list ^IPersistentList [^IFn generator ^long n]
+  (ArrayList. ^Collection (lazy-sequence generator n)))
+;;----------------------------------------------------------------
+(defn immutable-list ^IPersistentList [^IFn generator ^long n]
+  (ImmutableList/copyOf ^Iterable (lazy-sequence generator n)))
+;;----------------------------------------------------------------
+(defn array-of-int ^ints [^IFn generator ^long n]
+  (into-array Integer/TYPE (lazy-sequence generator n)))
+;;----------------------------------------------------------------
+(defn array-of-boxed-int [^IFn generator ^long n]
+  (into-array Integer (lazy-sequence generator n)))
+;;----------------------------------------------------------------
+(defn array-of-float ^floats [^IFn generator ^long n]
+  (into-array Float/TYPE (lazy-sequence generator n)))
+;;----------------------------------------------------------------
+(defn array-of-boxed-float [^IFn generator ^long n]
+  (into-array Float (lazy-sequence generator n)))
+;;----------------------------------------------------------------
+(defn persistent-list ^IPersistentList [^IFn generator ^long n]
+  (into '() (lazy-sequence generator n)))
+;;----------------------------------------------------------------
+(defn persistent-vector ^IPersistentVector [^IFn generator ^long n]
+  (into [] (lazy-sequence generator n)))
 ;;----------------------------------------------------------------
 
