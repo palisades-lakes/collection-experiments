@@ -1,6 +1,0 @@
-algorithm	benchmark	containers	elements	execution-count	generators	lower-q	manufacturerModel	median	millisec	nelements	now	nthreads	sample-count	tail-quantile	threads	total-time	upper-q	value	warmup-executions
-inline	transduce	array_of_ints	uniform_int	1494	array_of_ints-uniform_int	0.67158593708166	LENOVO.20HRCTO1WW	0.680726734270415	0.7018246997590363	131072	20171214-1654	2	50	0.05	2	52.41403369	0.7685679076305221	4.42299015E8	13945
-manual_rmf	transduce	array_of_ints	uniform_int	443	array_of_ints-uniform_int	2.241595214446953	LENOVO.20HRCTO1WW	2.2674723013544016	2.3646989952595936	131072	20171214-1656	2	50	0.05	2	52.31948707	2.716033260496613	4.42297337E8	3861
-transducer_rmf	transduce	array_of_ints	uniform_int	182	array_of_ints-uniform_int	5.205847989010989	LENOVO.20HRCTO1WW	5.9454338351648355	5.455690092747252	131072	20171214-1658	2	50	0.05	2	49.636100342	5.646599175824176	4.42299015E8	1769
-rmf	transduce	array_of_ints	uniform_int	43	array_of_ints-uniform_int	22.266997103488375	LENOVO.20HRCTO1WW	23.39144619767442	23.407202041860465	131072	20171214-1700	2	50	0.05	2	50.322477713	24.50171625813954	4.42299015E8	441
-fn	transduce	array_of_ints	uniform_int	45	array_of_ints-uniform_int	19.28743697777778	LENOVO.20HRCTO1WW	20.489768322222222	21.19172287777778	131072	20171214-1702	2	50	0.05	2	47.686792121	24.300814701111115	4.42299015E8	496

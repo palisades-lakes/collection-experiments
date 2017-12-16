@@ -1,0 +1,6 @@
+algorithm	benchmark	containers	elements	execution-count	generators	lower-q	manufacturerModel	median	millisec	nelements	now	nthreads	sample-count	tail-quantile	threads	total-time	upper-q	value	warmup-executions
+inline	transduce	immutable_list	ufloat	4	immutable_list-ufloat	295.57176025	LENOVO.20HRCTO1WW	448.852580875	323.292554525	8388608	20171216-0407	2	50	0.05	2	64.582565383	437.65972865000003	2.930238114905E12	26
+manual_rmf	transduce	immutable_list	ufloat	3	immutable_list-ufloat	443.2043269333334	LENOVO.20HRCTO1WW	456.382082	458.37239968000006	8388608	20171216-0411	2	50	0.05	2	68.748346466	478.07348400000006	2.9302379989647983E12	25
+transducer_rmf	transduce	immutable_list	ufloat	4	immutable_list-ufloat	257.51753725000003	LENOVO.20HRCTO1WW	279.5783235	269.92778439	8388608	20171216-0416	2	50	0.05	2	54.007560413	281.80437173749993	2.930238114905E12	46
+rmf	transduce	immutable_list	ufloat	2	immutable_list-ufloat	725.650924	LENOVO.20HRCTO1WW	749.27560375	751.9913176700001	8388608	20171216-0420	2	50	0.05	2	75.182634495	794.5187999249999	2.930238114905E12	16
+fn	transduce	immutable_list	ufloat	2	immutable_list-ufloat	717.813474	LENOVO.20HRCTO1WW	771.84890925	755.36507237	8388608	20171216-0425	2	50	0.05	2	75.524831674	788.1313365	2.930238114905E12	15

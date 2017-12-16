@@ -1,0 +1,6 @@
+algorithm	benchmark	containers	elements	execution-count	generators	lower-q	manufacturerModel	median	millisec	nelements	now	nthreads	sample-count	tail-quantile	threads	total-time	upper-q	value	warmup-executions
+inline	transduce	persistent_vector	ufloat	13	persistent_vector-ufloat	77.10605138461538	LENOVO.20HRCTO1WW	79.26208269230769	80.14092177538463	2097152	20171216-0202	2	50	0.05	2	52.052539152	83.40898284615385	7.31301268748E11	97
+manual_rmf	transduce	persistent_vector	ufloat	16	persistent_vector-ufloat	64.82112518750002	LENOVO.20HRCTO1WW	68.341867875	67.1077479875	2097152	20171216-0205	2	50	0.05	2	53.673608332	70.071148990625	7.313008076372351E11	103
+transducer_rmf	transduce	persistent_vector	ufloat	18	persistent_vector-ufloat	55.72692827777778	LENOVO.20HRCTO1WW	57.28601288888889	57.19002464555556	2097152	20171216-0208	2	50	0.05	2	51.476344945	58.637365	7.31301268748E11	206
+rmf	transduce	persistent_vector	ufloat	8	persistent_vector-ufloat	135.685347875	LENOVO.20HRCTO1WW	146.126266125	141.6600713725	2097152	20171216-0210	2	50	0.05	2	56.670342084	147.460637625	7.31301268748E11	73
+fn	transduce	persistent_vector	ufloat	8	persistent_vector-ufloat	136.309630875	LENOVO.20HRCTO1WW	139.8717776875	143.05717601	2097152	20171216-0213	2	50	0.05	2	57.236495039	163.10962575000002	7.31301268748E11	81

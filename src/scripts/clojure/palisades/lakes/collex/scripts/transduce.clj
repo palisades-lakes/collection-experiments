@@ -15,7 +15,7 @@
             [palisades.lakes.collex.scripts.defs :as defs]))
 ;; clj12g src\scripts\clojure\palisades\lakes\collex\scripts\transduce.clj 
 ;;----------------------------------------------------------------
-(doseq [^long n (take 6 (iterate (partial * 4) (* 8 8 8 8 8)))]
+(doseq [^long n (take 6 (drop 2 (iterate (partial * 4) (* 8 8 8 8 8))))]
   (let [options {:n n
                  :benchmark "transduce"
                  :pause 8
