@@ -26,20 +26,50 @@ dir.create(
   recursive=TRUE, 
   mode='0777')
 #-----------------------------------------------------------------
-quantile.plot(
+quantile.log.log.plot(
   data=data,
   fname='all',
+  ymin='lower.q', 
+  y='median', 
+  ymax='upper.q',
   plot.folder=plot.folder,
   group='algorithm',
   colors=algorithm.colors,
-  facet='containers')
-quantile.plot(
+  facet='containers',
+  ylabel='msec')
+quantile.log.log.plot(
   data=data,
   fname='all',
+  ymin='lower.q', 
+  y='median', 
+  ymax='upper.q',
   plot.folder=plot.folder,
   group='containers',
   colors=container.colors,
-  facet='algorithm')
+  facet='algorithm',
+  ylabel='msec')
+quantile.log.lin.plot(
+  data=data,
+  fname='all',
+  ymin='lower.q.per.element', 
+  y='median.per.element', 
+  ymax='upper.q.per.element',
+  plot.folder=plot.folder,
+  group='algorithm',
+  colors=algorithm.colors,
+  facet='containers',
+  ylabel='nanosec-per-element')
+quantile.log.lin.plot(
+  data=data,
+  fname='all',
+  ymin='lower.q.per.element', 
+  y='median.per.element', 
+  ymax='upper.q.per.element',
+  plot.folder=plot.folder,
+  group='containers',
+  colors=container.colors,
+  facet='algorithm',
+  ylabel='nanosec-per-element')
 #-----------------------------------------------------------------
 #cols <- c('benchmark','algorithm','nmethods',
 #  'lower.q','median', 'upper.q','millisec',

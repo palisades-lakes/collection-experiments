@@ -15,7 +15,8 @@
             [palisades.lakes.collex.scripts.defs :as defs]))
 ;; clj12g src\scripts\clojure\palisades\lakes\collex\scripts\transduce.clj 
 ;;----------------------------------------------------------------
-(doseq [^long n  (drop 5 (take 8 (iterate (partial * 4) (* 8 8 8 8 8))))]
+;; OOM in 12G at 128M
+(doseq [^long n  (take 6 (iterate (partial * 4) (* 8 8 8 8 8)))]
   (let [options {:n n
                  :benchmark "transduce"
                  :pause 8

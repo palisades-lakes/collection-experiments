@@ -43,8 +43,6 @@ read.data <- function (
   for (f in files) {
     print(f)
     tmp <- read.csv(f,sep='\t',as.is=TRUE)
-    tmp$nanosec <- (1000000 * tmp$millisec) / tmp$nelements
-    # print(summary(tmp))
     tmp$benchmark <- benchmark
     #print(summary(tmp))
     data <- rbind(data,tmp) }
@@ -63,6 +61,10 @@ read.data <- function (
   data$generators <- factor(
     data$generators,
     levels=sort(unique(data$generators)))
+  data$nanosec.per.element <- (1000000 * data$millisec) / data$nelements
+  data$lower.q.per.element <- (1000000 * data$lower.q) / data$nelements
+  data$median.per.element <- (1000000 * data$median) / data$nelements
+  data$upper.q.per.element <- (1000000 * data$upper.q) / data$nelements
   data }
 #-----------------------------------------------------------------
 html.table <- function(data,fname,n) {
@@ -107,24 +109,24 @@ md.table <- function(data,fname,n) {
   close(md.file) }
 #-----------------------------------------------------------------
 algorithm.colors <- c(
-  'fn'='#66666666',
-  'inline'='#1b9e7766',
-  'manual_rmf'='#b6663866',
-  'rmf'='#a6262866',
-  'transducer_rmf'='#377eb866')
+  'fn'='#1b9e7766',
+  'inline'='#377eb866',
+  'manual_rmf'='#7570b366',
+  'rmf'='#e7298a66',
+  'transducer_rmf'='#ff7f0066')
 container.colors <- c(
-  'array_of_boxed_float'='#66666666',
-  'array_of_boxed_int'='#66666666',
-  'array_of_float'='#1b9e7766',
-  'array_of_int'='#1b9e7766',
-  'array_list'='#b6663866',
-  'immutable_list'='#b6663866',
-  'lazy_sequence'='#a6562866',
-  'persistent_list'='#377eb866',
-  'persistent_vector'='#e41a1c66',
-  'realized'='#88888866')
+  'array_of_boxed_float'='#edaf5f66',
+  'array_of_boxed_int'='#edaf5f66',
+  'array_of_float'='#ff7f0066',
+  'array_of_int'='#ff7f0066',
+  'array_list'='#cab2d666',
+  'immutable_list'='#6a3d9a66',
+  'lazy_sequence'='#33a02c66',
+  'persistent_list'='#a6cee3',
+  'persistent_vector'='#1f78b466',
+  'realized'='#b2df8a66')
 #-----------------------------------------------------------------
-quantile.plot <- function(
+quantile.log.log.plot <- function(
   data=NULL, 
   fname=NULL,
   ymin='lower.q', 
@@ -133,7 +135,6 @@ quantile.plot <- function(
   group=NULL,
   facet=NULL,
   colors=NULL,
-  suffix='runtimes', 
   scales='fixed', #'free_y',
   ylabel='milliseconds',
   width=24, 
@@ -149,7 +150,7 @@ quantile.plot <- function(
   
   plot.file <- file.path(
     plot.folder,
-    paste(fname,group,facet,'quantiles','png',sep='.'))
+    paste(fname,group,facet,ylabel,'quantiles','png',sep='.'))
   
   p <- ggplot(
       data=data,
@@ -174,7 +175,67 @@ quantile.plot <- function(
     scale_x_log10(breaks = (1000000*c(0.01,0.1,1,10))) + 
     scale_y_log10(limits=c(0.10,NA)) +
     ylab(ylabel) +
-    ggtitle(paste('[0.05,0.50,0.95] quantiles for', suffix)) +
+    ggtitle(paste('[0.05,0.50,0.95] quantiles for', ylabel)) +
+    expand_limits(y=0); 
+  print(plot.file)
+  ggsave(p , 
+    device='png', 
+    file=plot.file, 
+    width=width, 
+    height=height, 
+    units='cm', 
+    dpi=300) }
+#-----------------------------------------------------------------
+quantile.log.lin.plot <- function(
+  data=NULL, 
+  fname=NULL,
+  ymin='lower.q', 
+  y='median', 
+  ymax='upper.q',
+  group=NULL,
+  facet=NULL,
+  colors=NULL,
+  scales='fixed', #'free_y',
+  ylabel='milliseconds',
+  width=24, 
+  height=14,
+  plot.folder=NULL) {
+  stopifnot(
+    !is.null(data),
+    !is.null(fname),
+    !is.null(plot.folder),
+    !is.null(group),
+    !is.null(facet),
+    !is.null(colors))
+  
+  plot.file <- file.path(
+    plot.folder,
+    paste(fname,group,facet,ylabel,'quantiles','png',sep='.'))
+  
+  p <- ggplot(
+      data=data,
+      aes_string(
+        x='nelements',  
+        ymin=ymin, y=y, ymax=ymax, 
+        group=group,
+        fill=group, 
+        color=group))  +
+    facet_wrap(as.formula(paste0('~',facet)),scales=scales) +
+    theme_bw() +
+    theme(plot.title = element_text(hjust = 0.5)) +
+    theme(
+      axis.text.x=element_text(angle=-90,hjust=0,vjust=0.5),
+      axis.title.x=element_blank()) + 
+    geom_ribbon(aes_string(ymin = ymin, ymax = ymax, fill = group)) +
+    geom_line(aes_string(y = ymin)) + 
+    geom_line(aes_string(y = y)) + 
+    geom_line(aes_string(y = ymax)) +   
+    scale_fill_manual(values=colors) +
+    scale_color_manual(values=colors) +
+    scale_x_log10(breaks = (1000000*c(0.01,0.1,1,10))) + 
+    #scale_y_log10(limits=c(0.10,NA)) +
+    ylab(ylabel) +
+    ggtitle(paste('[0.05,0.50,0.95] quantiles for', ylabel)) +
     expand_limits(y=0); 
   print(plot.file)
   ggsave(p , 
