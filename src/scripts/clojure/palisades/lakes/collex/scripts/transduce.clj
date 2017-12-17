@@ -6,7 +6,7 @@
   "Use criterium for alternative reduce-map-filter 
    implementations."
   {:author "palisades dot lakes at gmail dot com"
-   :version "2017-12-15"}
+   :version "2017-12-16"}
   
   (:require [palisades.lakes.bench.prng :as prng]
             [palisades.lakes.bench.generators :as g]
@@ -15,7 +15,7 @@
             [palisades.lakes.collex.scripts.defs :as defs]))
 ;; clj12g src\scripts\clojure\palisades\lakes\collex\scripts\transduce.clj 
 ;;----------------------------------------------------------------
-(doseq [^long n (take 6 (drop 2 (iterate (partial * 4) (* 8 8 8 8 8))))]
+(doseq [^long n  (drop 5 (take 8 (iterate (partial * 4) (* 8 8 8 8 8))))]
   (let [options {:n n
                  :benchmark "transduce"
                  :pause 8

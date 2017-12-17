@@ -107,21 +107,22 @@ md.table <- function(data,fname,n) {
   close(md.file) }
 #-----------------------------------------------------------------
 algorithm.colors <- c(
-  'fn'='#666666',
-  'inline'='#1b9e77',
-  'manual_rmf'='#b66638',
-  'rmf'='#a65628',
-  'transducer_rmf'='#377eb8')
+  'fn'='#66666666',
+  'inline'='#1b9e7766',
+  'manual_rmf'='#b6663866',
+  'rmf'='#a6262866',
+  'transducer_rmf'='#377eb866')
 container.colors <- c(
-  'array_of_boxed_float'='#666666',
-  'array_of_boxed_int'='#666666',
-  'array_of_float'='#1b9e77',
-  'array_of_int'='#1b9e77',
-  'array_list'='#b66638',
-  'lazy_sequence'='#a65628',
-  'persistent_list'='#377eb8',
-  'persistent_vector'='#e41a1c',
-  'realized'='#888888')
+  'array_of_boxed_float'='#66666666',
+  'array_of_boxed_int'='#66666666',
+  'array_of_float'='#1b9e7766',
+  'array_of_int'='#1b9e7766',
+  'array_list'='#b6663866',
+  'immutable_list'='#b6663866',
+  'lazy_sequence'='#a6562866',
+  'persistent_list'='#377eb866',
+  'persistent_vector'='#e41a1c66',
+  'realized'='#88888866')
 #-----------------------------------------------------------------
 quantile.plot <- function(
   data=NULL, 
@@ -156,7 +157,7 @@ quantile.plot <- function(
         x='nelements',  
         ymin=ymin, y=y, ymax=ymax, 
         group=group,
-        #fill=log2(nmethods), 
+        fill=group, 
         color=group))  +
     facet_wrap(as.formula(paste0('~',facet)),scales=scales) +
     theme_bw() +
@@ -164,19 +165,15 @@ quantile.plot <- function(
     theme(
       axis.text.x=element_text(angle=-90,hjust=0,vjust=0.5),
       axis.title.x=element_blank()) + 
-    #theme(legend.position='none') +
+    geom_ribbon(aes_string(ymin = ymin, ymax = ymax, fill = group)) +
+    geom_line(aes_string(y = ymin)) + 
+    geom_line(aes_string(y = y)) + 
+    geom_line(aes_string(y = ymax)) +   
     scale_fill_manual(values=colors) +
     scale_color_manual(values=colors) +
-    #scale_fill_brewer(palette=palette) +
-    #scale_color_brewer(palette=palette) +
-#    scale_color_gradient( 
-#      #low=muted('blue'), high=muted('red'),
-#      low='#0571b0', high='#ca0020',
-#      trans='log') +
+    scale_x_log10(breaks = (1000000*c(0.01,0.1,1,10))) + 
+    scale_y_log10(limits=c(0.10,NA)) +
     ylab(ylabel) +
-    #geom_crossbar(width=0.25) +
-    geom_ribbon(, fill = "grey80") +
-    geom_line() +
     ggtitle(paste('[0.05,0.50,0.95] quantiles for', suffix)) +
     expand_limits(y=0); 
   print(plot.file)

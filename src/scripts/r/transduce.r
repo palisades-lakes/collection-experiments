@@ -12,7 +12,7 @@ source('src/scripts/r/functions.R')
 parentFolder <- 'data-jdk9.0.1-clj1.9.0/scripts/'
 hardware <- 'LENOVO.20HRCTO1WW' # X1
 #hardware <- 'LENOVO.20ERCTO1WW' # P70
-theday = '20171215-[0-9]{4}'
+theday = '2017121[567]-[0-9]{4}'
 benchmark <- 'transduce'
 #-----------------------------------------------------------------
 data <- read.data(
