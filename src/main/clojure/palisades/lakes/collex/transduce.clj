@@ -5,9 +5,10 @@
   
   {:doc "Alternate implementations of reduce-map-filter."
    :author "palisades dot lakes at gmail dot com"
-   :version "2017-12-13"}
-  
-  (:import [clojure.lang IFn]))
+   :version "2017-12-17"}
+  (:require [palisades.lakes.collex.arrays :as arrays])
+  (:import [java.util ArrayList Iterator]
+           [clojure.lang IFn IPersistentVector]))
 ;;----------------------------------------------------------------
 ;; TODO: handle general init values
 ;; TODO: primitive type hints?
@@ -33,7 +34,85 @@
       ([s] 
         (let [x (first s)]
           (if (f x) 
-            (manual-rmf x (rest s))
+            (manual-rmf (m x) (rest s))
             (recur (rest s))))))))
 ;;----------------------------------------------------------------
-
+;; a special case for benchmarking, could turn into a macro?
+(defn inline [s]
+  (cond 
+    (instance? ArrayList s)
+    (let [s ^ArrayList s
+          n (int (.size s))]
+      (loop [i (int 0)
+             sum (double 0.0)]
+        (if (>= i n)
+          sum
+          (let [si (double (.get s i))]
+            (if (<= 0 si)
+              (recur (+ i 1) (+ sum (* si si)))
+              (recur (+ i 1) sum))))))
+    #_(instance? IPersistentVector s)
+    #_(let [s ^IPersistentVector s
+          n (int (.size s))]
+      (loop [i (int 0)
+             sum (double 0.0)]
+        (if (>= i n)
+          sum
+          (let [si (double (.get s i))]
+            (if (<= 0 si)
+              (recur (+ i 1) (+ sum (* si si)))
+              (recur (+ i 1) sum))))))
+    (instance? Iterable s)
+    (let [^Iterator it (.iterator ^Iterable s)]
+      (loop [sum (long 0)]
+        (if-not (.hasNext it)
+          sum
+          (let [si (long (.next it))]
+            (if (<= 0 si)
+              (recur (+ sum (* si si)))
+              (recur sum))))))
+    (arrays/int-array? s)
+    (let [^ints a s
+          n (int (alength a))]
+      (loop [i (int 0)
+             sum (long 0)]
+        (if (<= n i)
+          sum
+          (let [ai (aget a i)]
+            (if (<= 0 ai)
+              (recur (inc i) (+ sum (* ai ai)))
+              (recur (inc i)sum))))))
+    (arrays/array? s Integer)
+    (let [^objects a s
+          n (int (alength a))]
+      (loop [i (int 0)
+             sum (long 0)]
+        (if (<= n i)
+          sum
+          (let [ai (.intValue ^Integer (aget a i))]
+            (if (<= 0 ai)
+              (recur (inc i) (+ sum (* ai ai)))
+              (recur (inc i)sum))))))
+      (arrays/float-array? s)
+      (let [^floats a s
+            n (int (alength a))]
+        (loop [i (int 0)
+               sum (double 0.0)]
+          (if (<= n i)
+            sum
+            (let [ai (double (aget a i))]
+              (if (<= 0.0 ai)
+                (recur (inc i) (+ sum (* ai ai)))
+                (recur (inc i) sum))))))
+      (arrays/array? s Float)
+      (let [^objects a s
+            n (int (alength a))]
+        (loop [i (int 0)
+               sum (double 0.0)]
+          (if (<= n i)
+            sum
+            (let [ai (.doubleValue ^Float (aget a i))]
+              (if (<= 0 ai)
+                (recur (inc i) (+ sum (* ai ai)))
+                (recur (inc i)sum))))))))
+;;----------------------------------------------------------------

@@ -137,8 +137,8 @@ quantile.log.log.plot <- function(
   colors=NULL,
   scales='fixed', #'free_y',
   ylabel='milliseconds',
-  width=24, 
-  height=14,
+  width=36, 
+  height=21,
   plot.folder=NULL) {
   stopifnot(
     !is.null(data),
@@ -197,8 +197,8 @@ quantile.log.lin.plot <- function(
   colors=NULL,
   scales='fixed', #'free_y',
   ylabel='milliseconds',
-  width=24, 
-  height=14,
+  width=36, 
+  height=21,
   plot.folder=NULL) {
   stopifnot(
     !is.null(data),

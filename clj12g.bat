@@ -12,13 +12,12 @@ set TRACE=
 ::set TRACE=-XX:+PrintGCDetails -XX:+TraceClassUnloading -XX:+TraceClassLoading
 
 set PROF=
-::set PROF=-Xrunhprof:cpu=samples,depth=128,thread=y,doe=y
+::set PROF=-agentpath:"C:\Program Files\YourKit Java Profiler 2017.02-b66\bin\win64\yjpagent.dll"
 
 ::set THRUPUT=-d64 -server -XX:+AggressiveOpts 
 set THRUPUT=-d64 -server
 ::set THRUPUT=
 
-::set XMX=-Xms48g -Xmx48g -Xmn20g 
 set XMX=-Xms12g -Xmx12g -Xmn5g 
 
 set OPENS=--add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.util.concurrent.atomic=ALL-UNNAMED

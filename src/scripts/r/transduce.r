@@ -26,6 +26,30 @@ dir.create(
   recursive=TRUE, 
   mode='0777')
 #-----------------------------------------------------------------
+inline <- data[(data$algorithm=='inline') | (data$algorithm=='transducer_rmf'),]
+quantile.log.log.plot(
+  data=inline,
+  fname='inline',
+  ymin='lower.q', 
+  y='median', 
+  ymax='upper.q',
+  plot.folder=plot.folder,
+  group='algorithm',
+  colors=algorithm.colors,
+  facet='containers',
+  ylabel='msec')
+quantile.log.lin.plot(
+  data=inline,
+  fname='inline',
+  ymin='lower.q.per.element', 
+  y='median.per.element', 
+  ymax='upper.q.per.element',
+  plot.folder=plot.folder,
+  group='algorithm',
+  colors=algorithm.colors,
+  facet='containers',
+  ylabel='nanosec-per-element')
+#-----------------------------------------------------------------
 quantile.log.log.plot(
   data=data,
   fname='all',
