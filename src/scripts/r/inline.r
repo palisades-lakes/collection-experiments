@@ -12,8 +12,8 @@ source('src/scripts/r/functions.R')
 parentFolder <- 'data-jdk9.0.1-clj1.9.0/scripts/'
 hardware <- 'LENOVO.20HRCTO1WW' # X1
 #hardware <- 'LENOVO.20ERCTO1WW' # P70
-theday = '2017121[567]-[0-9]{4}'
-benchmark <- 'transduce'
+theday = '2017121[8]-[0-9]{4}'
+benchmark <- 'inline'
 #-----------------------------------------------------------------
 data <- read.data(
   parentFolder=parentFolder,
@@ -25,30 +25,6 @@ dir.create(
   showWarnings=FALSE, 
   recursive=TRUE, 
   mode='0777')
-#-----------------------------------------------------------------
-inline <- data[(data$algorithm=='inline') | (data$algorithm=='transducer_rmf'),]
-quantile.log.log.plot(
-  data=inline,
-  fname='inline',
-  ymin='lower.q', 
-  y='median', 
-  ymax='upper.q',
-  plot.folder=plot.folder,
-  group='algorithm',
-  colors=algorithm.colors,
-  facet='containers',
-  ylabel='msec')
-quantile.log.lin.plot(
-  data=inline,
-  fname='inline',
-  ymin='lower.q.per.element', 
-  y='median.per.element', 
-  ymax='upper.q.per.element',
-  plot.folder=plot.folder,
-  group='algorithm',
-  colors=algorithm.colors,
-  facet='containers',
-  ylabel='nanosec-per-element')
 #-----------------------------------------------------------------
 quantile.log.log.plot(
   data=data,

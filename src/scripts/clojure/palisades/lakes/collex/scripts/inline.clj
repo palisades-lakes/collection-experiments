@@ -18,16 +18,20 @@
 ;; clj12g src\scripts\clojure\palisades\lakes\collex\scripts\inline.clj 
 ;;----------------------------------------------------------------
 ;; OOM in 12G at 128M
-(let [^long n  (nth (iterate (partial * 4) (* 8 8 8 8 8)) 3)
-      options {:n n
-               :benchmark "inline"
-               :pause 8
-               :warmup-jit-period (* 8 1024 1024 1024)}]
-  (bench/bench
-    [containers/persistent-vector defs/ufloat]
-    [tr/inline
-     defs/transducer]
-    options))
+(doseq [^long n  (take 3 (iterate (partial * 4) (* 4 128 1024)))]
+  (let [options {:n n
+                 :benchmark "inline"
+                 :pause 8
+                 :warmup-jit-period (* 8 1024 1024 1024)}]
+    (doseq [container [containers/array-list 
+                       containers/persistent-vector 
+                       containers/persistent-list]]
+      (println (bench/fn-name container) n)
+      (bench/bench
+        [container defs/ufloat]
+        [tr/inline
+         defs/transducer]
+        options))))
 ;;----------------------------------------------------------------
 (shutdown-agents)
 (System/exit 0)

@@ -5,7 +5,7 @@
   
   {:doc "Factories for collections with 'random' elements."
    :author "palisades dot lakes at gmail dot com"
-   :version "2017-12-15"}
+   :version "2017-12-18"}
   
   (:import [java.util ArrayList  Collection List]
            [com.google.common.collect ImmutableList]
@@ -43,5 +43,14 @@
 ;;----------------------------------------------------------------
 (defn persistent-vector ^IPersistentVector [^IFn generator ^long n]
   (into [] (lazy-sequence generator n)))
+;;----------------------------------------------------------------
+;; just returns a PersistentVector
+#_(defn conjing [^IFn generator ^long n]
+   (let [s (transient [])]
+     (loop [s s
+            n (int n)]
+       (if (> 0 n)
+         (persistent! s)
+         (recur (conj! s (generator)) (dec n))))))
 ;;----------------------------------------------------------------
 

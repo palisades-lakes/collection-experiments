@@ -5,7 +5,7 @@
   
   {:doc "Alternate implementations of reduce-map-filter."
    :author "palisades dot lakes at gmail dot com"
-   :version "2017-12-17"}
+   :version "2017-12-18"}
   (:require [palisades.lakes.collex.arrays :as arrays])
   (:import [java.util ArrayList Iterator]
            [clojure.lang IFn IPersistentVector]))
@@ -51,18 +51,14 @@
             (if (<= 0 si)
               (recur (+ i 1) (+ sum (* si si)))
               (recur (+ i 1) sum))))))
-    #_(instance? IPersistentVector s)
-    #_(let [s ^IPersistentVector s
-          n (int (.size s))]
-      (loop [i (int 0)
+    (or (instance? IPersistentVector s)
+        (instance? IPersistentList s))
+      (loop [s s
              sum (double 0.0)]
-        (if (>= i n)
+        (if (empty? s)
           sum
-          (let [si (double (.get s i))]
-            (if (<= 0 si)
-              (recur (+ i 1) (+ sum (* si si)))
-              (recur (+ i 1) sum))))))
-    (instance? Iterable s)
+          (recur (rest s) (+ sum (double (first s))))))
+      (instance? Iterable s)
     (let [^Iterator it (.iterator ^Iterable s)]
       (loop [sum (long 0)]
         (if-not (.hasNext it)
@@ -93,26 +89,26 @@
             (if (<= 0 ai)
               (recur (inc i) (+ sum (* ai ai)))
               (recur (inc i)sum))))))
-      (arrays/float-array? s)
-      (let [^floats a s
-            n (int (alength a))]
-        (loop [i (int 0)
-               sum (double 0.0)]
-          (if (<= n i)
-            sum
-            (let [ai (double (aget a i))]
-              (if (<= 0.0 ai)
-                (recur (inc i) (+ sum (* ai ai)))
-                (recur (inc i) sum))))))
-      (arrays/array? s Float)
-      (let [^objects a s
-            n (int (alength a))]
-        (loop [i (int 0)
-               sum (double 0.0)]
-          (if (<= n i)
-            sum
-            (let [ai (.doubleValue ^Float (aget a i))]
-              (if (<= 0 ai)
-                (recur (inc i) (+ sum (* ai ai)))
-                (recur (inc i)sum))))))))
+    (arrays/float-array? s)
+    (let [^floats a s
+          n (int (alength a))]
+      (loop [i (int 0)
+             sum (double 0.0)]
+        (if (<= n i)
+          sum
+          (let [ai (double (aget a i))]
+            (if (<= 0.0 ai)
+              (recur (inc i) (+ sum (* ai ai)))
+              (recur (inc i) sum))))))
+    (arrays/array? s Float)
+    (let [^objects a s
+          n (int (alength a))]
+      (loop [i (int 0)
+             sum (double 0.0)]
+        (if (<= n i)
+          sum
+          (let [ai (.doubleValue ^Float (aget a i))]
+            (if (<= 0 ai)
+              (recur (inc i) (+ sum (* ai ai)))
+              (recur (inc i)sum))))))))
 ;;----------------------------------------------------------------

@@ -1,7 +1,7 @@
 # collection-experiments
 # intersects/baselines.R
 # palisades dot lakes at gmail dot com
-# version 2017-12-16
+# version 2017-12-18
 #-----------------------------------------------------------------
 # libraries
 #-----------------------------------------------------------------
@@ -122,8 +122,8 @@ container.colors <- c(
   'array_list'='#cab2d666',
   'immutable_list'='#6a3d9a66',
   'lazy_sequence'='#33a02c66',
-  'persistent_list'='#a6cee3',
-  'persistent_vector'='#1f78b466',
+  'persistent_list'='#96dee366',
+  'persistent_vector'='#0f68c466',
   'realized'='#b2df8a66')
 #-----------------------------------------------------------------
 quantile.log.log.plot <- function(

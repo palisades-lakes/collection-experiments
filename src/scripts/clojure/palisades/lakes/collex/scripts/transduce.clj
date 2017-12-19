@@ -11,6 +11,7 @@
   (:require [palisades.lakes.bench.prng :as prng]
             [palisades.lakes.bench.generators :as g]
             [palisades.lakes.bench.core :as bench]
+            [palisades.lakes.collex.transduce :as tr]
             [palisades.lakes.collex.containers :as containers]
             [palisades.lakes.collex.scripts.defs :as defs]))
 ;; clj12g src\scripts\clojure\palisades\lakes\collex\scripts\transduce.clj 
@@ -33,7 +34,7 @@
       (println (bench/fn-name container) n)
       (bench/bench 
         [container defs/ufloat]
-        [defs/inline
+        [tr/inline
          defs/manual
          defs/transducer
          defs/reduce-map-filter
