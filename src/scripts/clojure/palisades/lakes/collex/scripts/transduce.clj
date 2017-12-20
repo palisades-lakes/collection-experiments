@@ -17,11 +17,11 @@
 ;; clj12g src\scripts\clojure\palisades\lakes\collex\scripts\transduce.clj 
 ;;----------------------------------------------------------------
 ;; OOM in 12G at 128M
-(doseq [^long n  (take 6 (iterate (partial * 4) (* 8 8 8 8 8)))]
+(doseq [^long n  (take 18 (iterate (partial * 2) 512))]
   (let [options {:n n
                  :benchmark "transduce"
-                 :pause 8
-                 :warmup-jit-period (* 8 1024 1024 1024)}]
+                 :pause 60
+                 :warmup-jit-period (* 16 1024 1024 1024)}]
     (doseq [container
             [containers/array-of-boxed-float
              containers/array-of-float 

@@ -8,7 +8,7 @@
    :version "2017-12-18"}
   (:require [palisades.lakes.collex.arrays :as arrays])
   (:import [java.util ArrayList Iterator]
-           [clojure.lang IFn IPersistentVector]))
+           [clojure.lang IFn IPersistentList IPersistentVector]))
 ;;----------------------------------------------------------------
 ;; TODO: handle general init values
 ;; TODO: primitive type hints?
