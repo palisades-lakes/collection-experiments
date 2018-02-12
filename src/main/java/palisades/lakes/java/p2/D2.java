@@ -13,7 +13,7 @@ import clojure.lang.IFn;
  * if-then-else.
  * 
  * @author palisades dot lakes at gmail dot com
- * @version 2017-12-08
+ * @version 2018-02-11
  */
 
 public final class D2 {
@@ -38,11 +38,11 @@ public final class D2 {
 
     final long l0  = Double.doubleToLongBits(_x);
     final int c0 = (int) (l0 ^ (l0 >>> 32));
-    c += 37*c0;
+    c += 31*c0;
     
     final long l1  = Double.doubleToLongBits(_y);
     final int c1 = (int) (l1 ^ (l1 >>> 32));
-    c += 37*c1;
+    c += 31*c1;
     
     return c; }
 
