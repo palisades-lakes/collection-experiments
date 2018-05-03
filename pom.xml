@@ -45,8 +45,8 @@
      </execution>
     </executions>
     <configuration>
-     <vmArgs>-ea -dsa</vmArgs>
-     <clojureOptions>-Dclojure.compiler.direct-linking=true</clojureOptions>
+     <vmArgs>${clojure.vmargs}</vmArgs>
+     <clojureOptions>${clojure.options}</clojureOptions>
      <namespaces>
       <namespace>!palisades.lakes.collex.test.*</namespace>
      </namespaces>
@@ -76,15 +76,15 @@
    <artifactId>dynamic-functions</artifactId>
    <version>0.0.10-SNAPSHOT</version>
   </dependency>
-<dependency>
-  <groupId>org.eclipse.collections</groupId>
-  <artifactId>eclipse-collections-api</artifactId>
-  <version>${eclipse-collections-version}</version>
-</dependency>
-
-<dependency>
-  <groupId>org.eclipse.collections</groupId>
-  <artifactId>eclipse-collections</artifactId>
-  <version>${eclipse-collections-version}</version>
-</dependency> </dependencies>
+  <dependency>
+   <groupId>org.eclipse.collections</groupId>
+   <artifactId>eclipse-collections-api</artifactId>
+   <version>${eclipse-collections-version}</version>
+  </dependency>
+  <dependency>
+   <groupId>org.eclipse.collections</groupId>
+   <artifactId>eclipse-collections</artifactId>
+   <version>${eclipse-collections-version}</version>
+  </dependency>
+ </dependencies>
 </project>
