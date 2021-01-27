@@ -8,15 +8,16 @@
  <groupId>palisades-lakes</groupId>
  <artifactId>collection-experiments</artifactId>
  <description>Benchmarks for alternative collections.</description>
- <version>0.0.10-SNAPSHOT</version>
+ <version>0.0.11-SNAPSHOT</version>
  <parent>
   <groupId>palisades-lakes</groupId>
   <artifactId>palisades-lakes-parent</artifactId>
-  <version>0.0.10-SNAPSHOT</version>
+  <version>0.0.11-SNAPSHOT</version>
  </parent>
  <build>
   <plugins>
    <plugin>
+   
     <groupId>com.theoryinpractise</groupId>
     <artifactId>clojure-maven-plugin</artifactId>
     <version>${clojure-maven-version}</version>
@@ -64,7 +65,7 @@
   <dependency>
    <groupId>palisades-lakes</groupId>
    <artifactId>benchtools</artifactId>
-   <version>0.0.10-SNAPSHOT</version>
+   <version>0.0.11-SNAPSHOT</version>
   </dependency>
   <dependency>
    <groupId>palisades-lakes</groupId>
@@ -74,7 +75,7 @@
   <dependency>
    <groupId>palisades-lakes</groupId>
    <artifactId>dynamic-functions</artifactId>
-   <version>0.0.10-SNAPSHOT</version>
+   <version>0.0.11-SNAPSHOT</version>
   </dependency>
   <dependency>
    <groupId>org.eclipse.collections</groupId>
