@@ -5,7 +5,7 @@
   
   "Estimate RAM usage for various containers."
   {:author "palisades dot lakes at gmail dot com"
-   :version "2017-12-15"}
+   :version "2021-01-29"}
   
   (:require [clojure.string :as s]
             [palisades.lakes.bench.core :as bench]
@@ -13,7 +13,7 @@
             [palisades.lakes.collex.scripts.defs :as defs])
   
   (:import [com.carrotsearch.sizeof RamUsageEstimator]))
-;; clj12g src\scripts\clojure\palisades\lakes\collex\scripts\sizeof.clj > sizeof.csv 
+;; clj src\scripts\clojure\palisades\lakes\collex\scripts\sizeof.clj > sizeof.csv 
 ;;----------------------------------------------------------------
 (println "container,type,length,size,per-element")
 (let [general [containers/array-list

@@ -6,7 +6,7 @@
   "Use criterium for alternative reduce-map-filter 
    implementations."
   {:author "palisades dot lakes at gmail dot com"
-   :version "2017-12-16"}
+   :version "2021-01-29"}
   
   (:require [palisades.lakes.bench.prng :as prng]
             [palisades.lakes.bench.generators :as g]
@@ -14,7 +14,7 @@
             [palisades.lakes.collex.transduce :as tr]
             [palisades.lakes.collex.containers :as containers]
             [palisades.lakes.collex.scripts.defs :as defs]))
-;; clj12g src\scripts\clojure\palisades\lakes\collex\scripts\transduce.clj 
+;; clj src\scripts\clojure\palisades\lakes\collex\scripts\transduce.clj 
 ;;----------------------------------------------------------------
 ;; OOM in 12G at 128M
 (doseq [^long n  (take 18 (iterate (partial * 2) 512))]
