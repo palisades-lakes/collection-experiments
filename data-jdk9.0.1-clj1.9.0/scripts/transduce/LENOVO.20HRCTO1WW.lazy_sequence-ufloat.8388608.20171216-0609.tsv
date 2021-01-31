@@ -1,6 +1,0 @@
-algorithm	benchmark	containers	elements	execution-count	generators	lower-q	manufacturerModel	median	millisec	nelements	now	nthreads	sample-count	tail-quantile	threads	total-time	upper-q	value	warmup-executions
-inline	transduce	lazy_sequence	ufloat	2	lazy_sequence-ufloat	873.6179520000001	LENOVO.20HRCTO1WW	900.68239525	918.1447900300001	8388608	20171216-0531	2	50	0.05	2	91.67966331	962.164795625	2.926168521098E12	13
-manual_rmf	transduce	lazy_sequence	ufloat	2	lazy_sequence-ufloat	697.253864825	LENOVO.20HRCTO1WW	704.66128775	733.31962149	8388608	20171216-0540	2	50	0.05	2	73.287694167	779.2427015000001	2.9261684672343286E12	13
-transducer_rmf	transduce	lazy_sequence	ufloat	2	lazy_sequence-ufloat	685.5325595	LENOVO.20HRCTO1WW	717.92674825	727.665685	8388608	20171216-0549	2	50	0.05	2	72.77287448	771.221747	2.926168521098E12	13
-rmf	transduce	lazy_sequence	ufloat	1	lazy_sequence-ufloat	2364.981163	LENOVO.20HRCTO1WW	2443.9713075	2457.5043334	8388608	20171216-0559	2	50	0.05	2	122.809898923	2650.4457275499994	2.926168521098E12	5
-fn	transduce	lazy_sequence	ufloat	1	lazy_sequence-ufloat	2350.44289535	LENOVO.20HRCTO1WW	2499.0877575	2458.8228766999996	8388608	20171216-0609	2	50	0.05	2	122.875773221	2552.6206318000004	2.926168521098E12	4

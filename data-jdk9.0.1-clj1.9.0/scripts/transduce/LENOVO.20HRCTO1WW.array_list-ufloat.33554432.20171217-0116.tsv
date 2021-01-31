@@ -1,6 +1,0 @@
-algorithm	benchmark	containers	elements	execution-count	generators	lower-q	manufacturerModel	median	millisec	nelements	now	nthreads	sample-count	tail-quantile	threads	total-time	upper-q	value	warmup-executions
-inline	transduce	array_list	ufloat	2	array_list-ufloat	715.823755	LENOVO.20HRCTO1WW	741.91787975	755.59522054	33554432	20171217-0044	2	50	0.05	2	75.516264151	800.2430982000001	1.1712500463435E13	10
-manual_rmf	transduce	array_list	ufloat	2	array_list-ufloat	797.1166740000001	LENOVO.20HRCTO1WW	835.05361525	841.24216155	33554432	20171217-0052	2	50	0.05	2	84.141698512	905.858005	1.1712500451173715E13	11
-transducer_rmf	transduce	array_list	ufloat	2	array_list-ufloat	557.1303955	LENOVO.20HRCTO1WW	568.80566	593.94618246	33554432	20171217-0100	2	50	0.05	2	59.341181149	628.3038992500001	1.1712500463435E13	17
-rmf	transduce	array_list	ufloat	1	array_list-ufloat	1408.87865	LENOVO.20HRCTO1WW	1509.0290785	1479.58939678	33554432	20171217-0108	2	50	0.05	2	73.968085403	1579.8369986500002	1.1712500463435E13	6
-fn	transduce	array_list	ufloat	1	array_list-ufloat	1463.854012	LENOVO.20HRCTO1WW	1535.568654	1536.87115614	33554432	20171217-0116	2	50	0.05	2	76.828083044	1613.4928367500002	1.1712500463435E13	6
