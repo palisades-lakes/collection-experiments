@@ -1,0 +1,3 @@
+algorithm	benchmark	containers	elements	execution-count	generators	lower-q	manufacturerModel	median	millisec	nelements	now	nthreads	sample-count	tail-quantile	threads	total-time	upper-q	value	warmup-executions
+inline	inline	persistent_vector	ufloat	7	persistent_vector-ufloat	147.37575442857144	LENOVO.20ERCTO1WW	154.19199728571428	152.43098014285712	2097152	20210131-1355	6	50	0.05	6	53.35600475	157.86446442857144	565815.6125346265	55
+transducer_rmf	inline	persistent_vector	ufloat	17	persistent_vector-ufloat	59.81877370588235	LENOVO.20ERCTO1WW	60.32483841176471	60.61993511764706	2097152	20210131-1356	6	50	0.05	6	51.52908225	61.42470105882353	2.196518853337E12	157

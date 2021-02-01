@@ -1,6 +1,6 @@
 # filter-map-reduce experiments
 # palisades dot lakes at gmail dot com
-# version 2017-12-16
+# version 2021-02-01
 #-----------------------------------------------------------------
 if (file.exists('e:/porta/projects/collection-experiments')) {
   setwd('e:/porta/projects/collection-experiments')
@@ -9,10 +9,12 @@ if (file.exists('e:/porta/projects/collection-experiments')) {
 }
 source('src/scripts/r/functions.R')
 #-----------------------------------------------------------------
-parentFolder <- 'data-jdk9.0.1-clj1.9.0/scripts/'
-hardware <- 'LENOVO.20HRCTO1WW' # X1
-#hardware <- 'LENOVO.20ERCTO1WW' # P70
-theday = '2017121[567]-[0-9]{4}'
+#parentFolder <- 'data-jdk9.0.1-clj1.9.0/scripts/'
+parentFolder <- 'data-jdk15.0.1-clj1.10.1/scripts/'
+#hardware <- 'LENOVO.20HRCTO1WW' # X1
+hardware <- 'LENOVO.20ERCTO1WW' # P70
+#theday = '2017121[8]-[0-9]{4}'
+theday = '20210131-[0-9]{4}'
 benchmark <- 'transduce'
 #-----------------------------------------------------------------
 data <- read.data(
